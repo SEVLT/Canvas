@@ -1,0 +1,29 @@
+body {
+	margin: 0;
+}
+
+#canvas {
+	background: #dedede;
+}
+
+#actions {
+	position: fixed;
+	left: 0;
+	top: 0;
+}
+
+.actions-1 #eraser {
+	display: inline-block;
+}
+
+.actions-1 #brush {
+	display: none;
+}
+
+.actions-2 #eraser {
+	display: none;
+}
+
+.actions-2 #brush {
+	display: inline-block;
+}
