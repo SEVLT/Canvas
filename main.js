@@ -32,9 +32,41 @@ function listenToMouse(canvas) {
 	var using = false;
 	var lastPoint = { x: undefined, y: undefined };
 
-	canvas.onmousedown = function(states) {
-		var x = states.clientX;
-		var y = states.clientY;
+	if (document.body.ontouchstart == undefined) {
+		canvas.onmousedown = function(states) {
+			var x = states.clientX;
+			var y = states.clientY;
+			using = true;
+			if (eraserEnabled) {
+				context.clearRect(x - 5, y - 5, 10, 10);
+			} else {
+				lastPoint = { x: x, y: y };
+			}
+		};
+
+		canvas.onmousemove = function(states) {
+			var x = states.clientX;
+			var y = states.clientY;
+			if (!using) {
+				return;
+			}
+			if (eraserEnabled) {
+				context.clearRect(x - 5, y - 5, 10, 10);
+			} else {
+				var newPoint = { x: x, y: y };
+				drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
+				lastPoint = newPoint;
+			}
+		};
+
+		canvas.onmouseup = function(states) {
+			using = false;
+		};
+	}
+
+	canvas.ontouchstart = function(states) {
+		var x = states.touches[0].clientX;
+		var y = states.touches[0].clientY;
 		using = true;
 		if (eraserEnabled) {
 			context.clearRect(x - 5, y - 5, 10, 10);
@@ -43,9 +75,9 @@ function listenToMouse(canvas) {
 		}
 	};
 
-	canvas.onmousemove = function(states) {
-		var x = states.clientX;
-		var y = states.clientY;
+	canvas.ontouchmove = function(states) {
+		var x = states.touches[0].clientX;
+		var y = states.touches[0].clientY;
 		if (!using) {
 			return;
 		}
@@ -58,7 +90,7 @@ function listenToMouse(canvas) {
 		}
 	};
 
-	canvas.onmouseup = function(states) {
+	canvas.ontouchup = function(states) {
 		using = false;
 	};
 }
