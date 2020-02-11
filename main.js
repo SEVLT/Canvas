@@ -19,13 +19,15 @@ var eraserEnabled = false;
 var actions = document.getElementById("actions");
 var eraser = document.getElementById("eraser");
 var brush = document.getElementById("brush");
-eraser.onclick = function() {
-	eraserEnabled = true;
-	actions.className = "actions-2";
-};
 brush.onclick = function() {
 	eraserEnabled = false;
-	actions.className = "actions-1";
+	brush.classList.add("active");
+	eraser.classList.remove("active");
+};
+eraser.onclick = function() {
+	eraserEnabled = true;
+	eraser.classList.add("active");
+	brush.classList.remove("active");
 };
 
 function listenToMouse(canvas) {
