@@ -29,6 +29,7 @@ eraser.onclick = function() {
 };
 
 context.strokeStyle = "#ffbbff";
+context.lineWidth = 5;
 
 red.onclick = function() {
 	context.strokeStyle = "#ffbbff";
@@ -47,6 +48,17 @@ blue.onclick = function() {
 	red.classList.remove("active");
 	green.classList.remove("active");
 	blue.classList.add("active");
+};
+
+thin.onclick = function() {
+	context.lineWidth = 5;
+	thin.classList.add("active");
+	thick.classList.remove("active");
+};
+thick.onclick = function() {
+	context.lineWidth = 8;
+	thin.classList.remove("active");
+	thick.classList.add("active");
 };
 
 function listenToMouse(canvas) {
@@ -118,7 +130,6 @@ function listenToMouse(canvas) {
 
 function drawLine(x1, y1, x2, y2) {
 	context.beginPath();
-	context.lineWidth = 5;
 	context.moveTo(x1, y1);
 	context.lineTo(x2, y2);
 	context.stroke();
