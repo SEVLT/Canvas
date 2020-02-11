@@ -22,6 +22,9 @@ body {
 
 #canvas {
 	background: #dedede;
+	position: fixed;
+	left: 0;
+	top: 0;
 }
 
 #actions {
