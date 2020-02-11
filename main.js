@@ -16,9 +16,7 @@ function resize() {
 }
 
 var eraserEnabled = false;
-var actions = document.getElementById("actions");
-var eraser = document.getElementById("eraser");
-var brush = document.getElementById("brush");
+
 brush.onclick = function() {
 	eraserEnabled = false;
 	brush.classList.add("active");
@@ -28,6 +26,25 @@ eraser.onclick = function() {
 	eraserEnabled = true;
 	eraser.classList.add("active");
 	brush.classList.remove("active");
+};
+
+red.onclick = function() {
+	context.strokeStyle = "#ffbbff";
+	red.classList.add("active");
+	green.classList.remove("active");
+	blue.classList.remove("active");
+};
+green.onclick = function() {
+	context.strokeStyle = "#b4eeb4";
+	red.classList.remove("active");
+	green.classList.add("active");
+	blue.classList.remove("active");
+};
+blue.onclick = function() {
+	context.strokeStyle = "#87cefa";
+	red.classList.remove("active");
+	green.classList.remove("active");
+	blue.classList.add("active");
 };
 
 function listenToMouse(canvas) {
@@ -99,7 +116,6 @@ function listenToMouse(canvas) {
 
 function drawLine(x1, y1, x2, y2) {
 	context.beginPath();
-	context.strokeStyle = "black";
 	context.lineWidth = 5;
 	context.moveTo(x1, y1);
 	context.lineTo(x2, y2);
