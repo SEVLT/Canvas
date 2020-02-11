@@ -27,6 +27,9 @@ eraser.onclick = function() {
 	eraser.classList.add("active");
 	brush.classList.remove("active");
 };
+clear.onclick = function() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+};
 
 context.strokeStyle = "#ffbbff";
 context.lineWidth = 5;
