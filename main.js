@@ -8,6 +8,8 @@ listenToMouse(canvas);
 function resize() {
 	canvas.width = document.documentElement.clientWidth;
 	canvas.height = document.documentElement.clientHeight;
+	context.fillStyle = "#dedede";
+	context.fillRect(0, 0, canvas.width, canvas.height);
 	window.onresize = function() {
 		var data = context.getImageData(0, 0, canvas.width, canvas.height);
 		resize();
@@ -29,6 +31,13 @@ eraser.onclick = function() {
 };
 clear.onclick = function() {
 	context.clearRect(0, 0, canvas.width, canvas.height);
+};
+download.onclick = function() {
+	var url = canvas.toDataURL("image/jpeg");
+	var a = document.createElement("a");
+	a.href = url;
+	a.download = "Picture";
+	a.click();
 };
 
 context.strokeStyle = "#ffbbff";
