@@ -28,6 +28,8 @@ eraser.onclick = function() {
 	brush.classList.remove("active");
 };
 
+context.strokeStyle = "#ffbbff";
+
 red.onclick = function() {
 	context.strokeStyle = "#ffbbff";
 	red.classList.add("active");
